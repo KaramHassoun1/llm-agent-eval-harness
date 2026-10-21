@@ -13,9 +13,8 @@ A correct final answer is only part of a successful agent run. Did the agent ide
 check refund eligibility, call the right tools with the right arguments, and refund only the
 requested items? This repository evaluates both the answer and the behaviour.
 
-> **Status:** work in progress, currently Phase 1 of [docs/ROADMAP.md](docs/ROADMAP.md) (clean,
-> runnable structure). Deterministic evaluation, guardrails in code and an experiment log are the
-> next phases.
+> **Status:** work in progress, currently Phase 1 (clean, runnable structure). Deterministic
+> evaluation, guardrails in code and an experiment log are the next phases.
 
 ## How it works
 
@@ -153,8 +152,6 @@ format, not current performance:
 | [`src/refund_eval/`](src/refund_eval/) | Dataset, metrics, runner, JSON report, `refund-eval` CLI |
 | [`tests/`](tests/) | Fast unit tests; no API calls |
 | [`examples/metric_basics/`](examples/metric_basics/) | Standalone toy examples of each DeepEval metric |
-| [`docs/ROADMAP.md`](docs/ROADMAP.md) | Planned phases and their acceptance criteria |
-| [`docs/CLAUDE_CODE_PLAYBOOK.md`](docs/CLAUDE_CODE_PLAYBOOK.md) | How this repo is developed with Claude Code |
 
 ## Limitations
 
