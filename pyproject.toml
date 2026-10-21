@@ -1,0 +1,54 @@
+[project]
+name = "langchain-agent-evaluation-system"
+version = "0.2.0"
+description = "A LangChain refund-support agent with a reproducible evaluation harness (DeepEval + code-based checks)."
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [
+    { name = "Mohamed Karam Hassoun", email = "hassoun.mohamedkaram@gmail.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "deepeval[inspect]>=4.2.8",
+    "langchain>=1.4.4",
+    "langchain-openai>=1.7.0",
+    "langgraph>=1.2.14",
+    "portalocker[win32]>=4.4.0",
+    "pydantic>=2.14.0",
+    "pydantic-settings>=2.15.0",
+    "python-dotenv>=1.2.4",
+]
+
+[project.scripts]
+refund-eval = "refund_eval.cli:main"
+
+[build-system]
+requires = ["uv_build>=0.12.22,<0.14.0"]
+build-backend = "uv_build"
+
+[tool.uv.build-backend]
+module-name = ["refund_agent", "refund_eval"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = ["llm: calls an LLM API (needs OPENAI_API_KEY, costs money)"]
+addopts = "-m 'not llm'"
+
+[tool.mypy]
+python_version = "3.12"
+ignore_missing_imports = true
+
+[dependency-groups]
+dev = [
+    "mypy>=2.4.0",
+    "pytest>=9.1.1",
+    "ruff>=0.17.1",
+]

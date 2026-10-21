@@ -1,0 +1,57 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(uv sync *)",
+      "Bash(uv run ruff *)",
+      "Bash(uv run mypy *)",
+      "Bash(uv run pytest *)",
+      "Bash(uv run refund-eval --help)",
+      "Bash(uv pip show *)",
+      "Bash(git status *)",
+      "Bash(git diff *)",
+      "Bash(git log *)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(git switch *)"
+    ],
+    "ask": [
+      "Bash(uv run refund-eval *)",
+      "Bash(uv run --env-file *)",
+      "Bash(uv add *)",
+      "Bash(git push *)"
+    ],
+    "deny": [
+      "Read(./.env)",
+      "Edit(./.env)",
+      "Bash(git push --force *)",
+      "Bash(git push -f *)"
+    ]
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "uv",
+            "args": ["run", "--no-project", "--quiet", "python", "${CLAUDE_PROJECT_DIR}/.claude/hooks/ruff_after_edit.py"],
+            "timeout": 60
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "uv",
+            "args": ["run", "--no-project", "--quiet", "python", "${CLAUDE_PROJECT_DIR}/.claude/hooks/quality_gate.py"],
+            "timeout": 300
+          }
+        ]
+      }
+    ]
+  }
+}
