@@ -8,3 +8,4 @@ CLAUDE.local.md
 .mypy_cache
 .pytest_cache
 docs/
+screenshots/

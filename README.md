@@ -137,13 +137,6 @@ each with expected tool calls and arguments:
 purchase dates are fixed. For reproducible runs, set `REFUND_REFERENCE_DATE=2026-10-15`. Making the
 data relative to the reference date is part of Phase 2.
 
-## Example output
-
-An earlier version of the dataset (8 cases) produced this trace-metric summary. It shows the report
-format, not current performance:
-
-![DeepEval aggregate report from an earlier 8-case version](screenshots/Screenshot%202026-10-15%20180917.png)
-
 ## Project map
 
 | Path | Purpose |
